@@ -1,0 +1,24 @@
+{
+  "name": "2009rsvp",
+  "authors": [
+    "poofytoo <victorhung92@gmail.com>"
+  ],
+  "description": "launch page for 2.009 2015 final presentations",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Matter": "matterjs#~0.8.0-alpha"
+  }
+}
