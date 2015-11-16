@@ -4,18 +4,23 @@ $(function() {
     Bodies = Matter.Bodies;
 
   // create a Matter.js engine
-  var engine = Engine.create(document.body);
+  var engine = Engine.create(document.body, { 
+    render: {
+        options: {
+            wireframes: false
+        }
+    }
+});
 
   // create two boxes and a ground
   var boxA = Bodies.circle(400, 200, 20, { restitution: 0.9} );
   var boxB = Bodies.circle(450, 50, 20, { restitution: 0.9,    
     render: {
          fillStyle: 'red',
-         strokeStyle: 'blue',
-         lineWidth: 3
+         lineStyle: 'none'
     }
   });
-  
+
   var ground = Bodies.rectangle(400, 610, 810, 60, { restitution: 0.9, isStatic: true, angle: Math.PI * 0.04  });
 
   // add all of the bodies to the world
