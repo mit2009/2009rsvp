@@ -8,7 +8,10 @@ body {
 
 canvas {
   position: fixed;
-  z-index: 3; }
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none; }
 
 .main-container {
   background-color: #000;
@@ -63,6 +66,13 @@ canvas {
         font-weight: 500;
         text-decoration: none;
         font-style: normal; }
+      .content .signup .signup-box:hover {
+        background-color: rgba(255, 255, 255, 0.4); }
+
+.content-inner {
+  display: inline-block; }
+  .content-inner:hover {
+    cursor: pointer; }
 
 .footer {
   position: fixed;
@@ -82,11 +92,6 @@ canvas {
   top: 0;
   left: 0;
   z-index: -1; }
-
-canvas {
-  background-color: none;
-  top: 0;
-  left: 0; }
 
 @media (max-width: 520px) {
   .header h1 {
