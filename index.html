@@ -7,8 +7,10 @@
   <link rel="stylesheet" type="text/css" href="css/main.css"/>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
   <script src="bower_components/Matter/build/matter-0.8.0.min.js"></script>
   
   <meta name="viewport" content="initial-scale=1">
@@ -30,7 +32,13 @@
         <h3>07/12/15 &middot; 7PM Kresge Auditorium</h3>
         <div class="signup">
           <div class="signup-box">
-            <em>sign up</em> to be notified when RSVPs open
+            <input class="enter-email" type="text" placeholder="email address">
+            <div class="signup-text">
+              <em>sign up</em> to be notified when RSVPs open
+            </div>
+          </div>
+          <div class="go-btn">
+            GO
           </div>
         </div>
       </div>
@@ -40,6 +48,15 @@
         <polygon points="" style="fill:#fff" />
       </svg>
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
   </div>
   <script src="js/scripts.js"></script>
 </body>

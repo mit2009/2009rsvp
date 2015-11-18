@@ -4,7 +4,13 @@ html {
 body {
   color: #ccc;
   font-family: 'Lato', sans-serif;
-  height: 100%; }
+  height: 100%;
+  background: url(../images/kresge-background1.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #000; }
 
 canvas {
   position: fixed;
@@ -16,8 +22,17 @@ canvas {
 .main-container {
   background-color: #000;
   position: relative;
-  height: 100%; }
+  height: 100%;
+  background-color: #000;
+  animation-name: blackCoverFade;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards; }
 
+@keyframes blackCoverFade {
+  0% {
+    background-color: black; }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5); } }
 .header {
   padding: 20px;
   text-align: center;
@@ -43,10 +58,10 @@ canvas {
   .content h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
-    font-weight: 100;
+    font-weight: 300;
     color: #fff; }
   .content h2 {
-    font-weight: 100;
+    font-weight: 400;
     font-size: 18px;
     line-height: 0;
     font-family: 'Lato', sans-serif; }
@@ -54,20 +69,62 @@ canvas {
     line-height: 30px;
     font-weight: 400; }
   .content .signup {
-    border-radius: 30px; }
+    margin-top: 8px;
+    border-radius: 30px;
+    position: relative; }
+    .content .signup .go-btn {
+      vertical-align: top;
+      display: inline-block;
+      background-color: #fff;
+      padding: 10px 6px;
+      color: #000;
+      border-radius: 30px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      opacity: 0;
+      font-weight: 600; }
+      .content .signup .go-btn:hover {
+        opacity: 0.2; }
+    .content .signup .signup-text {
+      width: 300px;
+      font-weight: 300; }
+    .content .signup .enter-email {
+      display: none;
+      font-size: 16px;
+      outline: none;
+      border: none;
+      position: absolute;
+      font-family: 'Lato', sans-serif;
+      top: 7px;
+      left: 16px;
+      text-align: center;
+      z-index: 4;
+      width: 245px; }
     .content .signup .signup-box {
+      z-index: 2;
+      vertical-align: top;
+      overflow: hidden;
+      width: 300px;
       font-weight: 200;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.2);
+      -webkit-transition: background-color 0.2s;
+      /* Safari */
+      transition: background-color 0.2s;
       display: inline-block;
       padding: 10px 20px;
       border-radius: 30px;
-      margin-top: 8px; }
+      position: relative; }
       .content .signup .signup-box em {
-        font-weight: 500;
+        font-weight: 800;
         text-decoration: none;
         font-style: normal; }
       .content .signup .signup-box:hover {
-        background-color: rgba(255, 255, 255, 0.4); }
+        background-color: white;
+        color: #000;
+        -webkit-transition: background-color 0.2s;
+        /* Safari */
+        transition: background-color 0.2s; }
 
 .content-inner {
   display: inline-block; }
@@ -91,7 +148,7 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; }
+  z-index: 0; }
 
 @media (max-width: 520px) {
   .header h1 {
