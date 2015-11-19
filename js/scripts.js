@@ -12,6 +12,11 @@ $(function() {
     7: ['#9100FF', 'purple'],
   }
 
+  const TRAPEZOID_BOTTOM = 50;
+  const DOTS_RADIUS = 10;
+  const DOT_SPACING = 30;
+
+  var engine;
   var enterEmail = false;
   var activeGoBtn = false;
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -19,12 +24,56 @@ $(function() {
 
   // Event Handlers
   $(document).on('mouseover', '.content-inner', function() {
-    if (engine.world.gravity.x == 0) {
-      activateDots();
-    }
+    if (engine.world.gravity.x == 0) activateDots();
   })
 
   $(document).on('click', '.signup-box', function() {
+    transformEmailTextbox();
+  })
+
+  $(document).on('click', '.go-btn', function() {
+    submitEmail();
+  })
+
+  $(document).on('keyup', '.enter-email', function(e) {
+    activateTextInput(e);
+  })
+
+  function activateTextInput(e) {
+    if (e.which == 13) {
+      submitEmail();
+    }
+
+    $('.go-btn').animate({
+      color: '#ffffff',
+      backgroundColor: 'green'
+    })
+
+    activeGoBtn = true;
+    randomShade = Math.random()*0.7 + 0.3
+    randomColor = 'rgba(255,255,255,'+randomShade+')';
+    ball = Bodies.circle(initWinWidth/2, topOfBalls, DOTS_RADIUS,
+    {
+      friction: 0,
+      restitution: 1.1,
+      render: {
+        fillStyle: randomColor, // colouredBalls[i],
+        strokeStyle: randomColor// colouredBalls[i]
+      }
+    })
+
+    World.add(engine.world, ball);
+
+    Matter.Body.applyForce(ball, {
+        x : 0,
+        y : 0
+      }, {
+        x : (Math.random()-0.5)/200,
+        y : 0
+    })
+  }
+
+  function transformEmailTextbox() {
     if (!enterEmail) {
       enterEmail = true;
       jQuery.fx.interval = 10;
@@ -60,48 +109,7 @@ $(function() {
         })
       });
     }
-  })
-
-  $('.enter-email').focusin(function() {
-  })
-
-  $(document).on('click', '.go-btn', function() {
-    submitEmail();
-  })
-
-  $(document).on('keyup', '.enter-email', function(e) {
-    if (e.which == 13) {
-      submitEmail();
-    }
-
-    $('.go-btn').animate({
-      color: '#ffffff',
-      backgroundColor: 'green'
-    })
-    activeGoBtn = true;
-    randomShade = Math.random()*0.7 + 0.3
-    randomColor = 'rgba(255,255,255,'+randomShade+')';
-    ball = Bodies.circle(initWinWidth/2, topOfBalls, DOTS_RADIUS,
-    {
-      friction: 0,
-      restitution: 1.1,
-      render: {
-        fillStyle: randomColor, // colouredBalls[i],
-        strokeStyle: randomColor// colouredBalls[i]
-      }
-    })
-
-    World.add(engine.world, ball);
-
-    Matter.Body.applyForce(ball, {
-        x : 0,
-        y : 0
-      }, {
-        x : (Math.random()-0.5)/200,
-        y : 0
-      })
-  })
-
+  }
 
   function submitEmail() {
     $('.go-btn').css('display', 'none')
@@ -139,12 +147,6 @@ $(function() {
     drawTopTrapezoid();
     drawBottomTrapezoid();
   }
-
-  var engine;
-
-  const TRAPEZOID_BOTTOM = 50;
-  const DOTS_RADIUS = 10;
-  const DOT_SPACING = 30;
 
   function activateDots() {
     for (i in ballBodies) {
@@ -192,7 +194,6 @@ $(function() {
 
   topOfContent = $('.content').offset().top;
   topOfBalls = topOfContent - 60;
-  // colouredBalls = ['red', 'blue', 'gray', 'yellow', 'orange', 'green', 'purple', 'pink']
   ballBodies = [];
   allBodies = [];
 
@@ -246,17 +247,4 @@ $(function() {
       }
     }
   }, 500)
-
 })
-
-if (window.DeviceOrientationEvent) {
-  window.addEventListener('deviceorientation', function(eventData) {
-    var tiltLR = eventData.gamma;
-    var tiltFB = eventData.beta;
-    var dir = eventData.alpha
-    console.log(tiltLR, tiltFB, dir);
-  }, false);
-
-} else {
-  console.log('no-tilty')
-}
