@@ -54,15 +54,17 @@ canvas {
   position: fixed;
   width: 100%;
   top: 50%;
+  z-index: 4;
   transform: translateY(-50%); }
   .content h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
+    font-size: 4.2em;
     font-weight: 300;
-    color: #fff; }
+    color: #fff;
+    margin-bottom: 7px; }
   .content h2 {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.4em;
     line-height: 0;
     font-family: 'Lato', sans-serif; }
   .content h3 {
@@ -72,6 +74,9 @@ canvas {
     margin-top: 8px;
     border-radius: 30px;
     position: relative; }
+    .content .signup .confirm-message {
+      color: #fff;
+      display: none; }
     .content .signup .go-btn {
       vertical-align: top;
       display: inline-block;
@@ -85,7 +90,8 @@ canvas {
       opacity: 0;
       font-weight: 600; }
       .content .signup .go-btn:hover {
-        opacity: 0.2; }
+        -webkit-filter: brightness(1.5);
+        filter: brightness(1.5); }
     .content .signup .signup-text {
       width: 300px;
       font-weight: 300; }

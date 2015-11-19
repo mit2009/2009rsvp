@@ -2,6 +2,7 @@
 $(function() {
 
   var enterEmail = false;
+  var activeGoBtn = false;
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
@@ -35,14 +36,15 @@ $(function() {
             right: -20
           }, 200, 'easeInOutQuad')
           $('.signup-box').animate({
-            width: 240,
-            left: -30,
+            width: 280,
+            left: -24,
           }, 200, 'easeInOutQuad', function() {
             $('.signup').css({
               'filter': 'none',
               '-webkit-filter': 'none'
             })
             $('.enter-email').show();
+            $('.enter-email').focus();
           })
         })
       });
@@ -52,11 +54,34 @@ $(function() {
   $('.enter-email').focusin(function() {
   })
 
-  $(document).on('keyup', '.enter-email', function() {
+  function submitEmail() {
+    $('.go-btn').css('display', 'none')
+    $('.signup-box').animate({
+      width: 0,
+      opacity: 0,
+      left: 0
+    }, 200, function() {
+      $(this).slideUp(200, function() {
+        $('.confirm-message').text('your email has been submitted. thanks!');
+        $('.confirm-message').fadeIn();
+      });
+    })
+  }
+
+  $(document).on('click', '.go-btn', function() {
+    submitEmail();
+  })
+
+  $(document).on('keyup', '.enter-email', function(e) {
+    if (e.which == 13) {
+      submitEmail();
+    }
+
     $('.go-btn').animate({
-      color: '#fff',
+      color: '#ffffff',
       backgroundColor: 'green'
     })
+    activeGoBtn = true;
 
     ball = Bodies.circle(initWinWidth/2, topOfBalls, DOTS_RADIUS,
     {
@@ -154,7 +179,7 @@ $(function() {
   });
 
   topOfContent = $('.content').offset().top;
-  topOfBalls = topOfContent - 50;
+  topOfBalls = topOfContent - 60;
   colouredBalls = ['red', 'blue', 'gray', 'yellow', 'orange', 'green', 'purple', 'pink']
   ballBodies = []
   for (i = 0; i < 8; i ++) {
