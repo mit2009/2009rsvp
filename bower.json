@@ -1,15 +1,15 @@
 {
-  "name": "2009rsvp",
+  "name": "Y",
   "authors": [
     "poofytoo <victorhung92@gmail.com>"
   ],
-  "description": "launch page for 2.009 2015 final presentations",
-  "main": "index.html",
+  "description": "Y",
+  "main": "Y",
   "moduleType": [
-    "globals"
+    "node"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/poofytoo/2009rsvp",
   "private": true,
   "ignore": [
     "**/.*",

@@ -42,7 +42,7 @@ canvas {
 .header {
   padding: 20px;
   text-align: center;
-  color: #aaa;
+  color: #888;
   height:110px;
 
   h1 {
@@ -50,13 +50,15 @@ canvas {
     z-index: 1;
     font-size: 1.8em;
     font-weight: 300;
+    margin-bottom: 3px;
   }
 
   h2 {
+    color: #444;
     position: relative;
     z-index: 1;
     font-size: 1.1em;
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
@@ -180,7 +182,15 @@ canvas {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110px;
+  height: 125px;
+
+  img {
+    width: 60px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 6;
+  }
 }
 
 .slanted-background-top {
@@ -192,7 +202,7 @@ canvas {
 
 .slanted-background-bottom {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: 0;
 }
@@ -205,6 +215,53 @@ canvas {
     }
     h2 {
       font-size: 1.1em;
+    }
+  }
+}
+
+.kresge-container {
+  position: fixed;
+  bottom: 80px;
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-60px);
+
+  .cover-kresge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    top: 0;
+    height: 60px;
+    width: 120px;
+    background-image: url(../images/kcover.png);
+    background-size: 100%;
+  }
+
+  .black-kresge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 60px;
+    width: 120px;
+    background-image: url(../images/kblack.png);
+    background-size: 100%;
+  }
+
+  .bars-kresge {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 120px;
+
+    .color-bar {
+      position: absolute;
+      top: 60px;
+      bottom: 0;
+      width: 10px;
     }
   }
 }

@@ -11,8 +11,8 @@ $(function() {
     6: ['#FC40BE', 'pink'],
     7: ['#9100FF', 'purple'],
   }
-
-  const TRAPEZOID_BOTTOM = 50;
+  const kresgeOrder = [6, 7, 2, 4, 1, 5, 3, 0]
+  const TRAPEZOID_BOTTOM = 40;
   const DOTS_RADIUS = 10;
   const DOT_SPACING = 30;
 
@@ -24,10 +24,11 @@ $(function() {
 
   // Event Handlers
   $(document).on('mouseover', '.content-inner', function() {
-    if (engine.world.gravity.x == 0) activateDots();
+    //
   })
 
   $(document).on('click', '.signup-box', function() {
+    if (engine.world.gravity.x == 0) activateDots();
     transformEmailTextbox();
   })
 
@@ -93,7 +94,7 @@ $(function() {
             })
           }
           $('.go-btn').animate({
-            right: -20
+            right: -10
           }, 200, 'easeInOutQuad')
           $('.signup-box').animate({
             width: 280,
@@ -138,14 +139,15 @@ $(function() {
     ww = $(window).width();
     points = '0,0 ' + 
       ww + ',' + TRAPEZOID_BOTTOM + ' ' +
-      ww + ',110 ' + 
-      '0,110';
+      ww + ',200 ' + 
+      '0,200';
     $('.slanted-background-bottom').find('polygon').attr('points', points)
   }
 
   function init() {
     drawTopTrapezoid();
     drawBottomTrapezoid();
+    addKresgeBars();
   }
 
   function activateDots() {
@@ -160,6 +162,27 @@ $(function() {
     }
     engine.world.gravity.y = 1.5
     engine.world.gravity.x = 0.1
+  }
+
+  function growKresgeBar(id) {
+    $('#bar-' + i).animate({
+      top: 0,
+      height: 60
+    }, 300)
+  }
+
+  function addKresgeBars() {
+    for (i in teamColors) {
+      console.log(i);
+      var bar = $('<div></div>');
+      bar.addClass('color-bar')
+        .attr('id', 'bar-' + i)
+        .css({
+          'backgroundColor': teamColors[i][0],
+          'left': kresgeOrder.indexOf(parseInt(i))*10 + 30
+        })
+      $('.bars-kresge').append(bar);
+    }
   }
 
   initWinWidth = $(window).width();
@@ -212,9 +235,9 @@ $(function() {
   }
 
   groundAngle = Math.tan(TRAPEZOID_BOTTOM/initWinWidth);
-  midGroundHeight = initWinHeight - 85 + 9;
+  midGroundHeight = initWinHeight - 105 + 9;
   midGroundLocation = initWinWidth/2;
-  var ground = Bodies.rectangle(midGroundLocation, midGroundHeight, 2000, 20, { 
+  var ground = Bodies.rectangle(midGroundLocation, midGroundHeight, initWinWidth+200, 20, { 
     restitution: 1.6, 
     friction: 0, 
     isStatic: true, 
@@ -240,11 +263,12 @@ $(function() {
   setInterval(function() {
     for (i in ballBodies) {
       if (ballBodies[i] != '') {
-        if (ballBodies[i].position.y > (initWinHeight-80)) {
+        if (ballBodies[i].position.y > (initWinHeight-100) || ballBodies[i].position.x > initWinWidth) {
+          growKresgeBar(i)
           console.log(teamColors[(ballBodies[i].id-1)][1], 'is out!')
           ballBodies[(ballBodies[i].id-1)] = ''
         }
       }
     }
-  }, 500)
+  }, 200)
 })
