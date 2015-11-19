@@ -1,6 +1,17 @@
 
 $(function() {
 
+  const teamColors = {
+    0: ['#808C95', 'silver'],
+    1: ['#F6C900', 'yellow'],
+    2: ['#D61B29', 'red'],
+    3: ['#1F5CD4', 'blue'],
+    4: ['#F8660A', 'orange'],
+    5: ['#2BB20A', 'green'],
+    6: ['#FC40BE', 'pink'],
+    7: ['#9100FF', 'purple'],
+  }
+
   var enterEmail = false;
   var activeGoBtn = false;
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -54,20 +65,6 @@ $(function() {
   $('.enter-email').focusin(function() {
   })
 
-  function submitEmail() {
-    $('.go-btn').css('display', 'none')
-    $('.signup-box').animate({
-      width: 0,
-      opacity: 0,
-      left: 0
-    }, 200, function() {
-      $(this).slideUp(200, function() {
-        $('.confirm-message').text('your email has been submitted. thanks!');
-        $('.confirm-message').fadeIn();
-      });
-    })
-  }
-
   $(document).on('click', '.go-btn', function() {
     submitEmail();
   })
@@ -82,14 +79,15 @@ $(function() {
       backgroundColor: 'green'
     })
     activeGoBtn = true;
-
+    randomShade = Math.random()*0.7 + 0.3
+    randomColor = 'rgba(255,255,255,'+randomShade+')';
     ball = Bodies.circle(initWinWidth/2, topOfBalls, DOTS_RADIUS,
     {
       friction: 0,
       restitution: 1.1,
       render: {
-        fillStyle: colouredBalls[i],
-        strokeStyle: colouredBalls[i]
+        fillStyle: randomColor, // colouredBalls[i],
+        strokeStyle: randomColor// colouredBalls[i]
       }
     })
 
@@ -102,8 +100,22 @@ $(function() {
         x : (Math.random()-0.5)/200,
         y : 0
       })
-
   })
+
+
+  function submitEmail() {
+    $('.go-btn').css('display', 'none')
+    $('.signup-box').animate({
+      width: 0,
+      opacity: 0,
+      left: 0
+    }, 200, function() {
+      $(this).slideUp(200, function() {
+        $('.confirm-message').text('your email has been submitted. thanks!');
+        $('.confirm-message').fadeIn();
+      });
+    })
+  }
 
   function drawTopTrapezoid() {
     ww = $(window).width();
@@ -180,19 +192,20 @@ $(function() {
 
   topOfContent = $('.content').offset().top;
   topOfBalls = topOfContent - 60;
-  colouredBalls = ['red', 'blue', 'gray', 'yellow', 'orange', 'green', 'purple', 'pink']
-  ballBodies = []
+  // colouredBalls = ['red', 'blue', 'gray', 'yellow', 'orange', 'green', 'purple', 'pink']
+  ballBodies = [];
+  allBodies = [];
+
   for (i = 0; i < 8; i ++) {
     ball = Bodies.circle(i*DOT_SPACING + initWinWidth/2 - DOT_SPACING*4 + DOT_SPACING/2, topOfBalls, DOTS_RADIUS,
     {
       friction: 0,
       restitution: 1.1,
       render: {
-        fillStyle: colouredBalls[i],
-        strokeStyle: colouredBalls[i]
+        fillStyle: teamColors[i][0],
+        strokeStyle: teamColors[i][0]
       }
     })
-
 
     ballBodies.push(ball)
   }
@@ -210,8 +223,9 @@ $(function() {
     }
   });
 
-  ballBodies.push(ground)
-  World.add(engine.world, ballBodies);
+  allBodies = ballBodies.concat([ground])
+
+  World.add(engine.world, allBodies);
   Engine.run(engine);
   engine.world.gravity.y = 0
   engine.world.gravity.x = 0
@@ -221,6 +235,18 @@ $(function() {
   engine.world.bounds.max.y = Infinity;
 
   init();
+
+  setInterval(function() {
+    for (i in ballBodies) {
+      if (ballBodies[i] != '') {
+        if (ballBodies[i].position.y > (initWinHeight-80)) {
+          console.log(teamColors[(ballBodies[i].id-1)][1], 'is out!')
+          ballBodies[(ballBodies[i].id-1)] = ''
+        }
+      }
+    }
+  }, 500)
+
 })
 
 if (window.DeviceOrientationEvent) {
