@@ -120,8 +120,11 @@ $(function() {
       left: 0
     }, 200, function() {
       $(this).slideUp(200, function() {
-        $('.confirm-message').text('your email has been submitted. thanks!');
-        $('.confirm-message').fadeIn();
+        $('.confirm-message').text('&nbsp;');
+        $.post('process.php', {email: $('.enter-email').val()}, function(data) {
+          $('.confirm-message').text(data);
+          $('.confirm-message').fadeIn();
+        })
       });
     })
   }
