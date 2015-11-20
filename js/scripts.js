@@ -15,6 +15,7 @@ $(function() {
   const TRAPEZOID_BOTTOM = 40;
   const DOTS_RADIUS = 10;
   const DOT_SPACING = 30;
+  const SIGNUP_BOX_FULL_WIDTH = 240;
 
   var engine;
   var enterEmail = false;
@@ -94,10 +95,10 @@ $(function() {
             })
           }
           $('.go-btn').animate({
-            right: -10
+            right: 10
           }, 200, 'easeInOutQuad')
           $('.signup-box').animate({
-            width: 280,
+            width: SIGNUP_BOX_FULL_WIDTH,
             left: -24,
           }, 200, 'easeInOutQuad', function() {
             $('.signup').css({
@@ -134,7 +135,7 @@ $(function() {
               $('.go-btn').css('display', 'block');
               $('.signup-box').animate({
                 marginBottom: 10,
-                width: 280,
+                width: SIGNUP_BOX_FULL_WIDTH,
                 left: -24,
                 opacity: 1
               }).slideDown();
