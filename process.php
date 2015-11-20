@@ -28,14 +28,15 @@
       }
 
       $data = "'{\"email\":\"".$email."\", \"ip\":\"".$ip."\"}'";
-      $execCmd = "curl -X PUT -d " . $data . " ". $DATABASE ."" . $emailReplaced . ".json?auth=" . $SECRET_TOKEN;
+      $execCmd = "curl -X PUT -d " . $data . " ". $DATABASE . "" . $emailReplaced . ".json?auth=" . $SECRET_TOKEN;
       $output = exec($execCmd);
 
-      $arr = array ("message"=>"Your email has been submitted!","status"=>"success");
+      $arr = array("message"=>"Your email has been submitted!","status"=>"success");
       echo json_encode($arr);
+
     } else {
       // invalid email
-      $arr = array ("message"=>"invalid email address","status"=>"error");
+      $arr = array("message"=>"invalid email address","status"=>"error");
       echo json_encode($arr);
     }
 
