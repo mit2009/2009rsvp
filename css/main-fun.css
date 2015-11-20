@@ -1,0 +1,17 @@
+body, html {
+  height: 100%;
+  position: absolute; }
+
+.center-text {
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 500px;
+  font-family: montserrat;
+  font-weight: 100;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  opacity: 0.3; }
+
+/*# sourceMappingURL=main-fun.css.map */
