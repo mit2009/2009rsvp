@@ -274,10 +274,10 @@ $(function() {
   Engine.run(engine);
   engine.world.gravity.y = 0
   engine.world.gravity.x = 0
-  engine.world.bounds.min.x = -Infinity;
-  engine.world.bounds.min.y = -Infinity;
-  engine.world.bounds.max.x = Infinity;
-  engine.world.bounds.max.y = Infinity;
+  engine.world.bounds.min.x = -1000;
+  engine.world.bounds.min.y = -1000;
+  engine.world.bounds.max.x = 5000;
+  engine.world.bounds.max.y = 5000;
 
   init();
 
