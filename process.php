@@ -31,10 +31,12 @@
       $execCmd = "curl -X PUT -d " . $data . " ". $DATABASE ."" . $emailReplaced . ".json?auth=" . $SECRET_TOKEN;
       $output = exec($execCmd);
 
-      echo "Your email has been submitted!";
+      $arr = array ("message"=>"Your email has been submitted!","status"=>"success");
+      echo json_encode($arr);
     } else {
       // invalid email
-      echo "Invalid email. Please try again.";
+      $arr = array ("message"=>"invalid email address","status"=>"error");
+      echo json_encode($arr);
     }
 
   } else {

@@ -32,7 +32,7 @@ canvas {
   0% {
     background-color: black; }
   100% {
-    background-color: rgba(0, 0, 0, 0.5); } }
+    background-color: rgba(0, 0, 0, 0.1); } }
 .header {
   padding: 20px;
   text-align: center;

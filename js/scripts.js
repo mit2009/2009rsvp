@@ -113,20 +113,38 @@ $(function() {
   }
 
   function submitEmail() {
-    $('.go-btn').css('display', 'none')
-    $('.signup-box').animate({
-      width: 0,
-      opacity: 0,
-      left: 0
-    }, 200, function() {
-      $(this).slideUp(200, function() {
-        $('.confirm-message').text('&nbsp;');
-        $.post('process.php', {email: $('.enter-email').val()}, function(data) {
-          $('.confirm-message').text(data);
-          $('.confirm-message').fadeIn();
-        })
-      });
-    })
+    if ($('.go-btn').css('display') != 'none') {
+      $('.confirm-message').hide();
+      $('.go-btn').css('display', 'none')
+      $('.signup-box').animate({
+        width: 0,
+        opacity: 0,
+        left: 0
+      }, 200, function() {
+        $(this).slideUp(200, function() {
+          $('.confirm-message').html('&nbsp;');
+          $.post('process.php', {email: $('.enter-email').val()}, function(data) {
+            data = $.parseJSON(data);
+            console.log(data);
+            $('.confirm-message').text(data.message);
+            $('.confirm-message').fadeIn();
+
+            if (data.status == 'error') {
+              $('.confirm-message').css('color', '#e12548');
+              $('.go-btn').css('display', 'block');
+              $('.signup-box').animate({
+                marginBottom: 10,
+                width: 280,
+                left: -24,
+                opacity: 1
+              }).slideDown();
+            } else {
+              $('.confirm-message').css('color', '#fff');
+            }
+          })
+        });
+      })
+    }
   }
 
   function drawTopTrapezoid() {
@@ -176,7 +194,6 @@ $(function() {
 
   function addKresgeBars() {
     for (i in teamColors) {
-      console.log(i);
       var bar = $('<div></div>');
       bar.addClass('color-bar')
         .attr('id', 'bar-' + i)
@@ -268,7 +285,6 @@ $(function() {
       if (ballBodies[i] != '') {
         if (ballBodies[i].position.y > (initWinHeight-100) || ballBodies[i].position.x > initWinWidth) {
           growKresgeBar(i)
-          console.log(teamColors[(ballBodies[i].id-1)][1], 'is out!')
           ballBodies[(ballBodies[i].id-1)] = ''
         }
       }
