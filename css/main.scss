@@ -86,8 +86,18 @@ canvas {
   }
 
   h3 {
-    line-height: 30px;
+    line-height: 24px;
     font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+
+  .warning {
+    color: #D61B29;
+
+    em {
+      font-weight: 700;
+    }
   }
 
   .signup {
@@ -97,6 +107,7 @@ canvas {
 
     .confirm-message {
       color: #fff;
+      line-height: 20px;
       display: none;
     }
 

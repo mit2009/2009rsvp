@@ -31,7 +31,7 @@
       $execCmd = "curl -X PUT -d " . $data . " ". $DATABASE . "" . $emailReplaced . ".json?auth=" . $SECRET_TOKEN;
       $output = exec($execCmd);
 
-      $arr = array("message"=>"Your email has been submitted!","status"=>"success");
+      $arr = array("message"=>"You will be notified when RSVPs open!<br /><span class='warning'>Remember, this was <em>NOT an RSVP!</em></span>", "status"=>"success");
       echo json_encode($arr);
 
     } else {

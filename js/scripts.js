@@ -127,7 +127,7 @@ $(function() {
           $.post('process.php', {email: $('.enter-email').val()}, function(data) {
             data = $.parseJSON(data);
             console.log(data);
-            $('.confirm-message').text(data.message);
+            $('.confirm-message').html(data.message);
             $('.confirm-message').fadeIn();
 
             if (data.status == 'error') {
