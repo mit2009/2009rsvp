@@ -135,6 +135,11 @@ canvas {
       font-weight: 300;
     }
 
+    .rsvp-now {
+      font-weight: 400;
+      color: #fff;
+    }
+
     .enter-email {
       display: none;
       font-size: 16px;
@@ -156,7 +161,7 @@ canvas {
       width: 300px;
       font-weight: 200;
       //background-color: green;
-      background-color: rgba(255,255,255,0.2);
+      background-color: #2BB20A;
       -webkit-transition: background-color 0.2s; /* Safari */
       transition: background-color 0.2s;
       display: inline-block;
@@ -175,6 +180,10 @@ canvas {
         color: #000;
         -webkit-transition: background-color 0.2s; /* Safari */
         transition: background-color 0.2s;
+
+        .rsvp-now {
+          color: #000;
+        }
       }
     }
   }

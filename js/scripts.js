@@ -28,10 +28,18 @@ $(function() {
     //
   })
 
+  $(document).on('mouseover', '.signup-box', function() {
+    if (engine.world.gravity.x == 0) activateDots();
+  });
+
+  /*
+  PRE-RSVP SCRIPT 
+  
   $(document).on('click', '.signup-box', function() {
     if (engine.world.gravity.x == 0) activateDots();
     transformEmailTextbox();
   })
+  */
 
   $(document).on('click', '.go-btn', function() {
     submitEmail();

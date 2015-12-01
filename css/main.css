@@ -104,6 +104,9 @@ canvas {
     .content .signup .signup-text {
       width: 300px;
       font-weight: 300; }
+    .content .signup .rsvp-now {
+      font-weight: 400;
+      color: #fff; }
     .content .signup .enter-email {
       display: none;
       font-size: 16px;
@@ -122,7 +125,7 @@ canvas {
       overflow: hidden;
       width: 300px;
       font-weight: 200;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: #2BB20A;
       -webkit-transition: background-color 0.2s;
       /* Safari */
       transition: background-color 0.2s;
@@ -140,6 +143,8 @@ canvas {
         -webkit-transition: background-color 0.2s;
         /* Safari */
         transition: background-color 0.2s; }
+        .content .signup .signup-box:hover .rsvp-now {
+          color: #000; }
 
 .content-inner {
   display: inline-block; }
